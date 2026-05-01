@@ -1,0 +1,5 @@
+interface:
+  display_name: "DL Design Implementer"
+  short_description: "Implement DL Designer handoffs"
+  default_prompt: "Use $dl-design-implementer to implement a DL Designer mockup in the host application."
+  brand_color: "#58B07A"

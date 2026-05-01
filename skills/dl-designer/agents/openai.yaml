@@ -1,0 +1,5 @@
+interface:
+  display_name: "DL Designer"
+  short_description: "Dense Ant Design B2B mockups"
+  default_prompt: "Use $dl-designer to create a dense Ant Design B2B interface mockup project."
+  brand_color: "#58B07A"

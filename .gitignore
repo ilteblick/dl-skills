@@ -1,0 +1,27 @@
+# OS/editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+
+# Logs and local environment
+*.log
+.env
+.env.*
+
+# Dependency/build artifacts
+node_modules/
+dist/
+build/
+.cache/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Codex/local scratch
+.codex/
+tmp/
+temp/
