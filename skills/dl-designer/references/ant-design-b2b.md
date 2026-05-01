@@ -63,6 +63,14 @@ Design at least:
 - success/confirmation feedback
 - long text and overflow cases
 
+## Verification Checklist
+
+- Build the mockup before delivery when it is a React/Vite project.
+- Review the running mockup at `1400x900` and `1920x1080`.
+- Save representative screenshots in the handoff package.
+- Check table horizontal scroll, fixed action columns, ellipsis/tooltips, drawer overflow, modal overflow, and sticky action areas.
+- Check default, loading, empty, error, disabled/no-permission, validation, success, and long-content states.
+
 ## Handoff Quality Bar
 
 A developer should be able to answer these from the package:
@@ -74,3 +82,5 @@ A developer should be able to answer these from the package:
 - how the layout behaves around 1400px
 - what is fake in the mockup
 - what must be preserved in production
+- what data contract and API assumptions production must satisfy
+- which interaction details, validation rules, and implementation risks matter

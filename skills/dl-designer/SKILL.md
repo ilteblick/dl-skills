@@ -64,6 +64,21 @@ Use stable headings so another agent can consume the result:
 ## Open Questions
 ```
 
+Use stable handoff headings so `dl-design-implementer` can map the design to production code:
+
+```md
+# Implementation Handoff
+## Preserve In Production
+## Mock-Only Parts
+## Data Contract
+## API Assumptions
+## Interaction Details
+## Validation Rules
+## Accessibility And Locale
+## Open Questions
+## Implementation Risks
+```
+
 ## Prototype Rules
 
 - Use mock data only. Do not call real APIs.
@@ -91,6 +106,30 @@ Use stable headings so another agent can consume the result:
 - Use compact typography: 12-14px body/table text and 14-18px section headings.
 - Use fixed or constrained widths for IDs, dates, money, statuses, and row actions.
 - Use ellipsis/tooltips for long text instead of breaking table structure.
+
+## Accessibility And Locale
+
+- Preserve keyboard access for primary flows: filters, tables, row actions, drawers, modals, and form submission.
+- Show clear focus states and use readable contrast for text, controls, borders, disabled states, and selected rows.
+- Label form controls and compact icon actions through visible labels, placeholders, `aria-label`, or tooltips as appropriate.
+- Do not encode status or priority by color alone. Pair colors with text, icons, tags, or badges.
+- Design with realistic locale pressure: long Russian and English labels, company names, addresses, comments, dates, times, currencies, decimals, and time zones.
+- Keep validation and error messages close to the affected control, especially in dense forms, inline edits, drawers, and modals.
+
+## Verification Workflow
+
+Before final delivery of a React/Vite mockup:
+
+1. Run `npm install` when dependencies are not already installed.
+2. Run `npm run build` and fix build errors.
+3. Start a preview or dev server for visual review.
+4. Capture screenshots at minimum `1400x900` and `1920x1080`.
+5. Save useful screenshots under `screenshots/`.
+6. Check long-content cases: long labels, names, comments, IDs, dates, money values, and table overflow.
+7. Check required states in the running mockup: default, loading, empty, error, disabled, validation, success, and long-content overflow.
+8. Check drawer and modal overflow, sticky actions, focus behavior, and close/cancel paths.
+
+If the mockup is static HTML, open it in a browser and perform the same viewport, overflow, and state checks manually where applicable.
 
 ## Iteration Behavior
 
