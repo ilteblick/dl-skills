@@ -1,11 +1,27 @@
 ---
 name: dl-designer
-description: Create dense B2B interface designs and reviewable mini-project prototypes using modern Ant Design. Use when Codex needs to design screens, workflows, tables, filters, forms, modals, dashboards, states, wireframes, clickable mockups, or handoff documentation for analysts and product teams before production implementation.
+description: Create dense B2B Ant Design mockups, UI handoff packages, design specs, workflow screens, tables, filters, forms, dashboards, or clickable prototypes before production. Do NOT use to implement approved designs in production; use dl-design-implementer.
+allowed-tools: Read, Write, Edit, MultiEdit, Glob, Grep, Bash
+metadata:
+  argument-hint: "<feature-name or output-path> [static-html|react-vite]"
 ---
 
 # DL Designer
 
 Use this skill to design data-heavy B2B interfaces as a standalone handoff package. The result should be a mini-project that analysts can open, review, iterate on, and later pass to development.
+
+## Skill Type
+
+This is a Code Scaffolding & Templates skill for creating reviewable dense B2B UI prototype packages. Verification steps are part of prototype quality control, not a separate product verification workflow.
+
+## Input Handling
+
+Argument pattern: `<feature-name or output-path> [static-html|react-vite]`.
+
+- If the user gives a feature name, create `<feature-name>-design/`.
+- If the user gives an output path, create or update the handoff package at that path.
+- If the user does not choose a format, use React/Vite for interactive Ant Design states and static HTML only for simple screens.
+- If domain details are incomplete, reconstruct a reasonable workflow from the request, keep moving, and record open questions in `design-spec.md` and `handoff.md`.
 
 ## Design Baseline
 
@@ -38,6 +54,13 @@ Recommended structure:
 ```
 
 Keep the structure lightweight. If a static HTML mockup is enough, use it. If iteration needs realistic Ant Design behavior, create a small React/Vite mockup.
+
+For React/Vite mockups, start from `assets/react-vite-ant-layout/`. This base template must be used as the first layout pass unless the user explicitly asks for a different shell. It provides:
+
+- an Ant Design `Layout` with a fixed-width `Sider`
+- several menu items to make navigation density visible from the start
+- a sticky top header for page title, scoped actions, and status metadata
+- a scrollable content area sized for dense tables, filters, drawers, and state previews
 
 ## Documentation Contract
 
@@ -96,6 +119,14 @@ Use stable handoff headings so `dl-design-implementer` can map the design to pro
   - `Dropdown` for secondary actions
   - `Space.Compact` for joined filters/actions
 
+## Gotchas
+
+- Do not create a marketing or landing-page hero when the task is a working B2B screen. The first viewport should be the actual operational interface.
+- Do not call real APIs from a mockup, even if the user provides real endpoints. Use mock data and document API assumptions in `handoff.md`.
+- Do not loosen the layout into decorative cards and large whitespace. Keep density usable around 1400px with compact tables, filters, and action bars.
+- Do not deliver only the happy path. Include loading, empty, error, disabled, validation, success, and long-content overflow states.
+- Do not write generic handoff notes. Make `handoff.md` concrete enough for `dl-design-implementer` to preserve layout, behavior, data needs, and implementation risks.
+
 ## Visual Rules
 
 - Configure brand color through Ant Design tokens when the mockup uses React/Ant Design:
@@ -109,9 +140,9 @@ Use stable handoff headings so `dl-design-implementer` can map the design to pro
 
 ## Accessibility And Locale
 
-- Preserve keyboard access for primary flows: filters, tables, row actions, drawers, modals, and form submission.
-- Show clear focus states and use readable contrast for text, controls, borders, disabled states, and selected rows.
-- Label form controls and compact icon actions through visible labels, placeholders, `aria-label`, or tooltips as appropriate.
+- Preserve keyboard access in dense DL flows: filter rows, table row actions, drawer forms, modal confirmations, and submit/cancel paths.
+- Show clear focus and selected-row states without breaking compact spacing.
+- Label compact icon actions through visible labels, placeholders, `aria-label`, or tooltips as appropriate.
 - Do not encode status or priority by color alone. Pair colors with text, icons, tags, or badges.
 - Design with realistic locale pressure: long Russian and English labels, company names, addresses, comments, dates, times, currencies, decimals, and time zones.
 - Keep validation and error messages close to the affected control, especially in dense forms, inline edits, drawers, and modals.
