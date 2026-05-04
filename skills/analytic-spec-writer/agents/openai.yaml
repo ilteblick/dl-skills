@@ -1,0 +1,4 @@
+interface:
+  display_name: "Analytic Spec Writer"
+  short_description: "Uniform developer-ready BA specifications"
+  default_prompt: "Use $analytic-spec-writer to create a structured developer-ready business analysis specification."
