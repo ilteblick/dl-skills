@@ -36,50 +36,10 @@ For a full reusable document skeleton, read `references/spec-template.md`.
 
 ## Output Modes
 
-### Quick Spec
-
-Use this by default for most requests:
-
-```md
-# Specification: <Feature Name>
-## 1. Goal
-## 2. Scope
-## 3. User / Business Flow
-## 4. Requirements
-## 5. Data And Validation
-## 6. Integrations / API
-## 7. Edge Cases
-## 8. Acceptance Criteria
-## 9. Open Questions
-## 10. Assumptions
-## 11. Developer Handoff
-```
-
-Remove sections that are clearly irrelevant. For example, skip `Integrations / API` when there is no external or internal service contract, and skip `Data And Validation` when there are no fields or structured data.
-
-### Full Spec
-
-Use this for large, cross-system, regulated, permission-heavy, audit-heavy, or high-risk work:
-
-```md
-# Specification: <Feature Name>
-## 1. Context And Goal
-## 2. Scope
-## 3. Actors And Systems
-## 4. Business Process
-## 5. Functional Requirements
-## 6. Data Model
-## 7. Business Rules
-## 8. Validations And Errors
-## 9. Integrations And API Contract
-## 10. UI/UX Requirements
-## 11. Permissions And Audit
-## 12. Non-Functional Requirements
-## 13. Acceptance Criteria
-## 14. Open Questions
-## 15. Assumptions
-## 16. Developer Handoff
-```
+- Use Quick Spec by default for most requests.
+- Use Full Spec only for large, cross-system, regulated, permission-heavy, audit-heavy, or high-risk work.
+- Remove sections that are clearly irrelevant. For example, skip API details when there is no service contract, and skip data details when there are no fields or structured data.
+- Read `references/spec-template.md` when a reusable skeleton, table format, or Full Spec extension is needed.
 
 ### Review Mode
 
@@ -102,13 +62,7 @@ Use this when the user asks to review, check, critique, complete, or improve an 
 
 ## Data Model
 
-When data details matter, use a Markdown table with one row per field. Quick Spec needs only the fields developers need to implement form controls, storage/API shape, and validation:
-
-| field_name | field_label | data_type | required | description | validation_rules |
-|---|---|---|---:|---|---|
-| `application_status` | `Application status` | `string` | `true` | Current processing status. | Required after submission. |
-
-For Full Spec, use the expanded data model table in `references/spec-template.md`. Normalize user-provided data formats only as far as useful, and mention fields that cannot be mapped.
+When data details matter, use a Markdown table with one row per field. Quick Spec needs only the fields developers need for form controls, storage/API shape, and validation. For Full Spec, use the expanded data model table in `references/spec-template.md`.
 
 ## Requirement Rules
 
@@ -129,29 +83,11 @@ Each requirement should include, when relevant:
 
 ## Business Rules
 
-Use numbered business rules for Full Spec or when rules will be referenced by QA, API behavior, or configuration:
-
-```md
-BR-001: <Rule>.
-```
-
-For Quick Spec, bullets are acceptable. Clarify priority when rules conflict.
+Use numbered business rules for Full Spec or when rules will be referenced by QA, API behavior, or configuration. For Quick Spec, bullets are acceptable. Clarify priority when rules conflict.
 
 ## Validations And Errors
 
-For validation-heavy features, use a table:
-
-| ID | Field/Action | Condition | Error Message | Blocking | Notes |
-|---|---|---|---|---|---|
-| `VAL-001` | `<field>` | `<invalid condition>` | `<message>` | `Yes/No` | `<notes>` |
-
-Specify whether each error appears in UI, API response, logs, or monitoring.
-
-In Quick Spec, combine data and validation into one section unless separating them improves readability.
-
-## Edge Cases
-
-Call out edge cases explicitly when they affect behavior, tests, permissions, integrations, data consistency, or user expectations. Do not bury them in long narrative text.
+For validation-heavy features, use a table and specify whether each error appears in UI, API response, logs, or monitoring. In Quick Spec, combine data and validation unless separating them improves readability.
 
 ## Acceptance Criteria
 
@@ -165,13 +101,7 @@ For Quick Spec, use direct bullets when scenarios would be unnecessarily verbose
 
 ## Developer Handoff
 
-End with a short implementation-oriented handoff:
-
-- what should be built
-- affected screens, entities, services, APIs, jobs, reports, imports, or exports
-- important implementation decisions already made
-- decisions still blocked by open questions
-- test focus areas
+End with a short implementation-oriented handoff: what to build, affected surfaces, decisions made, decisions blocked by open questions, and test focus areas.
 
 ## Output And Artifacts
 
@@ -186,10 +116,6 @@ Before finalizing a specification, check that:
 
 - The document is no more formal than the task requires.
 - Empty or irrelevant sections were removed.
-- Data model columns are sufficient for the chosen output mode.
-- Every important business action has at least one requirement.
-- Every validation has an expected message or API behavior.
-- Every integration names source, target, trigger, payload, and failure behavior.
-- Important edge cases are explicit.
-- Open questions are explicit and do not hide implementation-critical gaps.
+- Requirements, validations, integrations, and edge cases are specific enough to implement and test.
+- Open questions expose implementation-critical gaps.
 - Assumptions are marked as assumptions, not facts.
